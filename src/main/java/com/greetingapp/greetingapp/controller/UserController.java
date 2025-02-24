@@ -1,9 +1,12 @@
 package com.greetingapp.greetingapp.controller;
 
 import com.greetingapp.greetingapp.dto.UserDTO;
+import com.greetingapp.greetingapp.entity.UserEntity;
 import com.greetingapp.greetingapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 // Base path for all
@@ -56,5 +59,17 @@ public class UserController {
     @PostMapping("/postGreet")
     public String getGreetingMessage(@RequestBody UserDTO request) {
         return userService.greetingMessage(request.getFirstName(), request.getLastName());
+    }
+
+    //UC_4-save the greeting message in the repository
+    //saves a new greeting message in the database
+    @PostMapping
+    public UserEntity saveGreeting(@RequestBody String message) {
+        return userService.saveMessage(message);
+    }
+    //retrieves all stored greeting messages
+    @GetMapping
+    public List<UserEntity> getAllGreetings() {
+        return userService.getAllMessages();
     }
 }
