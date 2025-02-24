@@ -68,5 +68,9 @@ public class UserService {
             return null;
         }
     }
+    // UC_8- method to delete the greeting message from the repository
+    public void deleteMessage(Long id) {
+        repository.deleteById(id);
+    }
 
 }
