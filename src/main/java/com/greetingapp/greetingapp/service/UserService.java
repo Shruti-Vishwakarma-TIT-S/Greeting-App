@@ -43,6 +43,8 @@ public class UserService {
     public UserEntity saveMessage(String message) {
         return repository.save(new UserEntity(message));
     }
+
+    //UC_6-list all greeting messages
     //retrieves all greeting messages from the database
     public List<UserEntity> getAllMessages() {
         return repository.findAll();
@@ -52,4 +54,6 @@ public class UserService {
     public Optional<UserEntity> getMessageById(Long id) {
         return repository.findById(id);
     }
+
+
 }

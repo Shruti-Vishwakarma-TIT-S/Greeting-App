@@ -68,6 +68,8 @@ public class UserController {
     public UserEntity saveGreeting(@RequestBody String message) {
         return userService.saveMessage(message);
     }
+
+    //UC_6-list all greeting messages
     //retrieves all stored greeting messages
     @GetMapping
     public List<UserEntity> getAllGreetings() {
@@ -79,4 +81,6 @@ public class UserController {
     public Optional<UserEntity> getGreetingById(@PathVariable Long id) {
         return userService.getMessageById(id);
     }
+
+
 }
