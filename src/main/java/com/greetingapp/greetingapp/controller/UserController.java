@@ -1,5 +1,6 @@
 package com.greetingapp.greetingapp.controller;
 
+import com.greetingapp.greetingapp.dto.UserDTO;
 import com.greetingapp.greetingapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -48,5 +49,12 @@ public class UserController {
     // curl -X GET http://localhost:8080/api/greeting
     public String sayHelloGet() {
         return UserService.getGreetingMessage();
+    }
+
+    // UC 3 --------------------------- starts here
+    // curl -X POST http://localhost:8080/api/postGreet -H "Content-Type: application/json" -d "{\"firstName\":\"Jasmine\", \"lastName\":\"Vase\"}"
+    @PostMapping("/postGreet")
+    public String getGreetingMessage(@RequestBody UserDTO request) {
+        return userService.greetingMessage(request.getFirstName(), request.getLastName());
     }
 }
