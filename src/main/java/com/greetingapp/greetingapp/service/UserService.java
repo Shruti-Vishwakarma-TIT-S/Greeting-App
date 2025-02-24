@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -45,5 +46,10 @@ public class UserService {
     //retrieves all greeting messages from the database
     public List<UserEntity> getAllMessages() {
         return repository.findAll();
+    }
+
+    //UC_5- to find a greeting message by ID
+    public Optional<UserEntity> getMessageById(Long id) {
+        return repository.findById(id);
     }
 }

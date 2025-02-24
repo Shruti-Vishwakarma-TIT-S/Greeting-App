@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 // Base path for all
@@ -71,5 +72,11 @@ public class UserController {
     @GetMapping
     public List<UserEntity> getAllGreetings() {
         return userService.getAllMessages();
+    }
+
+    //UC_5-endpoint to fetch a greeting message by ID
+    @GetMapping("/{id}")
+    public Optional<UserEntity> getGreetingById(@PathVariable Long id) {
+        return userService.getMessageById(id);
     }
 }
