@@ -1,5 +1,7 @@
 package com.greetingapp.greetingapp.controller;
 
+import com.greetingapp.greetingapp.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -31,5 +33,20 @@ public class UserController {
     @DeleteMapping("/delete")
     public String sayHelloDelete(){
         return "{\"message\" : \"Greeting deleted.\"}";
+    }
+
+    //UC_2- to return a simple greeting message
+    // curl -X GET http://localhost:8080/api/greet
+    @Autowired
+    //automatically injects the UserService bean into this controller
+    private UserService userService;
+    // Constructor-based Dependency Injection
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+    @GetMapping("/greeting")
+    // curl -X GET http://localhost:8080/api/greeting
+    public String sayHelloGet() {
+        return UserService.getGreetingMessage();
     }
 }
