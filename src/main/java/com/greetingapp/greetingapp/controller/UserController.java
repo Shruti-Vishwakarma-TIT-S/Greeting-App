@@ -17,26 +17,28 @@ public class UserController {
     //GET
     // curl -X GET http://localhost:8080/api/greet
     @GetMapping("/greet")
-    public String sayHello(){
+    public String sayHello() {
         return "{\"message\" : \"Hello World.\"}";
     }
+
     //POST
     //curl -X POST http://localhost:8080/api/post
     @PostMapping("/post")
-    public String sayHelloPost(){
+    public String sayHelloPost() {
         return "{\"message\" : \"Hello World. Greeting posted.\"}";
     }
+
     //PUT
     //curl -X PUT http://localhost:8080/api/put
     @PutMapping("/put")
-    public String sayHelloPut(){
+    public String sayHelloPut() {
         return "{\"message\" : \"Hello World. Greeting updated.\"}";
     }
 
     //DELETE
     //curl -X DELETE http://localhost:8080/api/delete
     @DeleteMapping("/delete")
-    public String sayHelloDelete(){
+    public String sayHelloDelete() {
         return "{\"message\" : \"Greeting deleted.\"}";
     }
 
@@ -45,10 +47,12 @@ public class UserController {
     @Autowired
     //automatically injects the UserService bean into this controller
     private UserService userService;
+
     // Constructor-based Dependency Injection
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
     @GetMapping("/greeting")
     // curl -X GET http://localhost:8080/api/greeting
     public String sayHelloGet() {
@@ -82,5 +86,11 @@ public class UserController {
         return userService.getMessageById(id);
     }
 
+    // UC_7- to update a greeting message by ID
+    @PutMapping("/greetings/{id}")
+    public UserEntity updateGreeting(@PathVariable Long id, @RequestBody String newMessage) {
+        return userService.updateMessage(id, newMessage);
 
+
+    }
 }

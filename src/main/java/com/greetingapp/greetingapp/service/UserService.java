@@ -55,5 +55,18 @@ public class UserService {
         return repository.findById(id);
     }
 
+    // UC_7- method to update the greeting message in the repository
+    public UserEntity updateMessage(Long id, String newMessage) {
+        Optional<UserEntity> optionalUserEntity = repository.findById(id);
+        if (optionalUserEntity.isPresent()) {
+            UserEntity userEntity = optionalUserEntity.get();
+            userEntity.setMessage(newMessage);
+            return repository.save(userEntity);
+        }
+        else {
+            // Handle the case when the entity is not found
+            return null;
+        }
+    }
 
 }
